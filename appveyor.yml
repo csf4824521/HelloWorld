@@ -13,24 +13,16 @@ environment:
     platform: x64
     qt: 5.9.7
     releaseName: github_qt59_vs2015_x64
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    platform: x64
-    qt: 5.9.7
-    releaseName: github_qt59_vs2017_x64
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-    platform: x64
-    qt: 5.12
-    releaseName: github_qt512_vs2015_x64
-  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-    platform: x64
-    qt: 5.12
-    releaseName: github_qt512_vs2017_x64
 before_build:
-  - if "%platform%"=="x86" set QTDIR=C:\Qt\Qt5.9.7\5.9.7\msvc2015
-  - if "%platform%"=="x64" set QTDIR=C:\Qt\Qt5.9.7\5.9.7\msvc2015_64
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" set msvc=msvc2015
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" set vs=D:\Microsoft Visual Studio 14.0\VC
+  - if "%platform%"=="x86" set QTDIR=C:\Qt\Qt%qt%\%qt%\%msvc%
+  - if "%platform%"=="x64" set QTDIR=C:\Qt\Qt%qt%\%qt%\%msvc%_64
   - set PATH=%PATH%;%QTDIR%\bin;
-  - if "%platform%"=="x86" call D:\Microsoft Visual Studio 14.0\VC\vcvarsall.bat x86
-  - if "%platform%"=="x64" call D:\Microsoft Visual Studio 14.0\VC\vcvarsall.bat x64
+  - if "%platform%"=="x86" set vcvarsall=%vs%\vcvarsall.bat
+  - if "%platform%"=="x64" set vcvarsall=%vs%\vcvarsall.bat
+  - if "%platform%"=="x86" call "%vcvarsall%" x86
+  - if "%platform%"=="x64" call "%vcvarsall%" x64
 build_script:
   - qmake
   - nmake
@@ -42,7 +34,7 @@ artifacts:
 deploy:
   provider: GitHub
   auth_token: $(GITHUB_OAUTH_TOKEN)
-  description: 'github Release'
+  description: 'HelloCI Release'
   draft: false
   prerelease: false
   on:
