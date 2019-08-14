@@ -7,15 +7,15 @@ environment:
   matrix:
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     platform: x86
-    qt: 5.9
+    qt: 5.9.7
     releaseName: HelloCI_qt59_vs2015_x86
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     platform: x64
-    qt: 5.9
+    qt: 5.9.7
     releaseName: HelloCI_qt59_vs2015_x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
     platform: x64
-    qt: 5.9
+    qt: 5.9.7
     releaseName: HelloCI_qt59_vs2017_x64
   - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
     platform: x64
