@@ -15,15 +15,15 @@ environment:
     releaseName: github_qt59_vs2015_x64
 before_build:
   - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" set msvc=msvc2015
-  - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" set vs=D:\Microsoft Visual Studio 14.0\VC
+  - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" set vs=C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC
   - if "%platform%"=="x86" set QTDIR=C:\Qt\Qt%qt%\%qt%\%msvc%
   - if "%platform%"=="x64" set QTDIR=C:\Qt\Qt%qt%\%qt%\%msvc%_64
   - set PATH=%PATH%;%QTDIR%\bin;
   - if "%platform%"=="x86" set vcvarsall=%vs%\vcvarsall.bat
   - if "%platform%"=="x64" set vcvarsall=%vs%\vcvarsall.bat
 ECHO %vcvarsall%
-  - if "%platform%"=="x86" cmd "%vcvarsall%" x86
-  - if "%platform%"=="x64" cmd "%vcvarsall%" x64
+  - if "%platform%"=="x86" call "%vcvarsall%" x86
+  - if "%platform%"=="x64" call "%vcvarsall%" x64
 build_script:
   - qmake
   - nmake
