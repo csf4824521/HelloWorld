@@ -22,8 +22,8 @@ before_build:
   - if "%platform%"=="x86" set vcvarsall=%vs%\vcvarsall.bat
   - if "%platform%"=="x64" set vcvarsall=%vs%\vcvarsall.bat
 ECHO %vcvarsall%
-  - if "%platform%"=="x86" call "%vcvarsall%" x86
-  - if "%platform%"=="x64" call "%vcvarsall%" x64
+  - if "%platform%"=="x86" cmd "%vcvarsall%" x86
+  - if "%platform%"=="x64" cmd "%vcvarsall%" x64
 build_script:
   - qmake
   - nmake
