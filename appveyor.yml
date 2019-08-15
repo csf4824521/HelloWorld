@@ -21,8 +21,8 @@ before_build:
   - set PATH=%PATH%;%QTDIR%\bin;
   - if "%platform%"=="x86" set vcvarsall=%vs%\vcvarsall.bat
   - if "%platform%"=="x64" set vcvarsall=%vs%\vcvarsall.bat
-  - if "%platform%"=="x86" call "%vcvarsall%" x86
-  - if "%platform%"=="x64" call "%vcvarsall%" x64
+  - if "%platform%"=="x86" call %vcvarsall% x86
+  - if "%platform%"=="x64" call %vcvarsall% x64
 build_script:
   - qmake
   - nmake
