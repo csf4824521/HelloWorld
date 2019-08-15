@@ -19,8 +19,8 @@ before_build:
   - if "%platform%"=="x86" set QTDIR=C:\Qt\Qt%qt%\%qt%\%msvc%
   - if "%platform%"=="x64" set QTDIR=C:\Qt\Qt%qt%\%qt%\%msvc%_64
   - set PATH=%PATH%;%QTDIR%\bin;
-  - if "%platform%"=="x86" set vcvarsall="%vs%\vcvarsall.bat"
-  - if "%platform%"=="x64" set vcvarsall="%vs%\vcvarsall.bat"
+  - if "%platform%"=="x86" set vcvarsall=%vs%\vcvarsall.bat
+  - if "%platform%"=="x64" set vcvarsall=%vs%\vcvarsall.bat
   - if "%platform%"=="x86" call "%vcvarsall%" x86
   - if "%platform%"=="x64" call "%vcvarsall%" x64
 build_script:
