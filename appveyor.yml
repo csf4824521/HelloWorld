@@ -27,15 +27,14 @@ build_script:
   - qmake .\github\github.pro
   - nmake
 after_build:
-  - if "%APPVEYOR_REPO_TAG%"=="true" windeployqt release\GithubCI.exe
+  - if "%APPVEYOR_REPO_TAG%"=="true" windeployqt release\github.exe
 artifacts:
   - path: release
     name: $(releaseName)
-    
 deploy:
   provider: GitHub
   auth_token: $(GITHUB_OAUTH_TOKEN)
-  description: 'GithubCI Release'
+  description: 'github Release'
   draft: false
   prerelease: false
   on:
